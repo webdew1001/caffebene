@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cafebene_renewal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.scss">
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <script src="js/header.js"></script>
+
+    <script>
+        $(function () {
+            const sliders = [];
+
+            $('.menu_slider').each(function (i, el) {
+                const swiper = new Swiper($(el).find('.swiper')[0], {
+                    slidesPerView: 5,
+                    spaceBetween: 20,
+                    breakpoints: {
+                        1024: {
+                            slidesPerView: 5
+                        },
+                        768: {
+                            slidesPerView: 4
+                        },
+                        360: {
+                            slidesPerView: 3
+                        },
+
+                        0: {
+                            slidesPerView: 2
+                        },
+                    },
+                    loop: false,
+                });
+                sliders.push(swiper);
+            });
+
+            $('.menu_tabs button').on('click', function () {
+                const target = $(this).data('target');
+
+                $('.menu_tabs button').removeClass('active');
+                $(this).addClass('active');
+
+                $('.menu_slider').removeClass('active');
+                $('.menu_slider.' + target).addClass('active');
+            });
+
+            let regionData = {
+                seoul: ["강남구", "서초구", "종로구", "마포구", "용산구"],
+                busan: ["해운대구", "수영구", "사하구", "중구", "연제구"],
+                daegu: ["중구", "동구", "서구", "달서구", "수성구"],
+                incheon: ["부평구", "남동구", "연수구", "서구", "중구"],
+                gwangju: ["동구", "서구", "남구", "북구", "광산구"]
+            };
+
+            let regionSelect = document.getElementById("region");
+            let subregionSelect = document.getElementById("subregion");
+
+            regionSelect.addEventListener("change", function () {
+                let selectedRegion = this.value;
+
+                // 하위 목록 초기화
+                subregionSelect.innerHTML = '<option value="">시/군/구 선택</option>';
+
+                if (regionData[selectedRegion]) {
+                    regionData[selectedRegion].forEach(function (sub) {
+                        let opt = document.createElement("option");
+                        opt.value = sub;
+                        opt.textContent = sub;
+                        subregionSelect.appendChild(opt);
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+
+        <header class="header">
+            <div class="inner">
+                <h1 class="logo">
+                    <a href="#"><img src="img/logo_white.png" alt="logo"></a>
+                </h1><!-- logo -->
+
+                <nav class="nav_pc pc">
+                    <ul class="gnb">
+                        <li>
+                            <a href="#" class="depth01">CAFEBENE</a>
+                            <ul class="depth02">
+                                <li>브랜드 스토리</li>
+                                <li>베네캣 스토리</li>
+                                <li>카페베네 원두</li>
+                                <li>카페베네 소식</li>
+                                <li>매거진</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                        <li>
+                            <a href="#" class="depth01">menu</a>
+                            <ul class="depth02">
+                                <li>커피</li>
+                                <li>음료</li>
+                                <li>푸드</li>
+                                <li>MD 상품</li>
+                                <li>retail</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                        <li>
+                            <a href="#" class="depth01">store</a>
+                            <ul class="depth02">
+                                <li>국내</li>
+                                <li>해외</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                        <li>
+                            <a href="#" class="depth01">membership</a>
+                            <ul class="depth02">
+                                <li>등급&혜택</li>
+                                <li>가입방법안내</li>
+                                <li>서비스</li>
+                                <li>FAQ</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                        <li>
+                            <a href="#" class="depth01">global</a>
+                            <ul class="depth02">
+                                <li>해외매장안내</li>
+                                <li>해외사업소개</li>
+                                <li>해외가맹&유통</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                    </ul><!-- gnb -->
+                </nav>
+
+                <div class="button_wrap pc">
+                    <div class="search_box">
+                        <input type="text" name="" id="" placeholder="Search">
+                    </div><!-- search_box end -->
+                    <button type="button" class="mypage pc_btn"><img src="img/mypage_wh.png" alt="mypage"></button>
+                    <button type="button" class="cart pc_btn"><img src="img/cart_wh.png" alt="cart"></button>
+                </div><!-- button_wrap -->
+
+                <button type="button" class="nav_btn mobile"><img src="img/menu_wh.png" alt="menu"></button>
+                <nav class="nav_mobile mobile">
+                    <div class="title">
+                        <img src="img/logo.png" alt="logo" class="logo">
+                        <div class="button">
+                            <div class="search_box">
+                                <input type="text" name="" id="" placeholder="Search">
+                            </div><!-- search_box end -->
+                            <button type="button" class="mypage mob_btn"><img src="img/mypage.png"
+                                    alt="mypage"></button>
+                            <button type="button" class="close mob_btn"><img src="img/close.png" alt="close"></button>
+                        </div><!-- button -->
+                    </div><!-- title -->
+                    <ul class="gnb">
+                        <li>
+                            <a href="#" class="depth01">CAFEBENE</a>
+                            <ul class="depth02">
+                                <li>브랜드 스토리</li>
+                                <li>베네캣 스토리</li>
+                                <li>카페베네 원두</li>
+                                <li>카페베네 소식</li>
+                                <li>매거진</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                        <li>
+                            <a href="#" class="depth01">menu</a>
+                            <ul class="depth02">
+                                <li>커피</li>
+                                <li>음료</li>
+                                <li>푸드</li>
+                                <li>MD 상품</li>
+                                <li>retail</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                        <li>
+                            <a href="#" class="depth01">store</a>
+                            <ul class="depth02">
+                                <li>국내</li>
+                                <li>해외</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                        <li>
+                            <a href="#" class="depth01">membership</a>
+                            <ul class="depth02">
+                                <li>등급&혜택</li>
+                                <li>가입방법안내</li>
+                                <li>서비스</li>
+                                <li>FAQ</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                        <li>
+                            <a href="#" class="depth01">global</a>
+                            <ul class="depth02">
+                                <li>해외매장안내</li>
+                                <li>해외사업소개</li>
+                                <li>해외가맹&유통</li>
+                            </ul><!-- depth02 -->
+                        </li>
+                    </ul><!-- gnb -->
+                </nav><!-- nav_mobile -->
+            </div><!-- inner -->
+            <div class="nav_bg"></div>
+        </header>
+
+        <main class="main">
+            <section class="main_visual">
+                <div class="inner">
+                    <video autoplay muted loop>
+                        <source src="img/mainvisual.mov" type="video/mp4">
+                    </video>
+
+                    <div class="main_btn">
+                        <button type="button" class="m_btn">
+                            <img src="img/고객문의.png" alt="" class="image before">
+                            <img src="img/고객문의_color.png" alt="" class="image after">
+                            <p>고객문의</p>
+                        </button><!-- m_btn -->
+                        <button type="button" class="m_btn">
+                            <img src="img/가맹문의.png" alt="" class="image before">
+                            <img src="img/가맹문의_color.png" alt="" class="image after">
+                            <p>가맹문의</p>
+                        </button><!-- m_btn -->
+                    </div><!-- main_btn -->
+                </div><!-- inner -->
+            </section><!-- main_visual -->
+
+            <section class="section section01">
+                <div class="inner">
+                    <div class="text">
+                        <p>커피 그 이상을 제공하고자 노력합니다.</p>
+                        <h2>우리가 지켜온 커피에 대한 약속</h2>
+                    </div><!-- text -->
+                    <ul class="card">
+                        <li>
+                            <img src="img/section01_1.png" alt="" class="sec01_bg">
+                            <div class="incard">
+                                <img src="img/section01_01.png" alt="">
+                                <button type="button" class="sec01_btn">브랜드 스토리 바로가기</button>
+                            </div><!-- incard -->
+                        </li>
+                        <li>
+                            <img src="img/section01_2.png" alt="" class="sec01_bg">
+                            <div class="incard">
+                                <img src="img/section01_02.png" alt="">
+                                <button type="button" class="sec01_btn">베네캣 스토리 바로가기</button>
+                            </div><!-- incard -->
+                        </li>
+                        <li>
+                            <img src="img/section01_3.png" alt="" class="sec01_bg">
+                            <div class="incard">
+                                <img src="img/section01_03.png" alt="">
+                                <button type="button" class="sec01_btn">카페베네 소식 바로가기</button>
+                            </div><!-- incard -->
+                        </li>
+                    </ul>
+                </div><!-- inner -->
+            </section><!-- section01 -->
+
+            <section class="section section02">
+                <div class="inner">
+                    <div class="text">
+                        <p>커피 그 이상을 제공하고자 노력합니다.</p>
+                        <h2>Caffebene Specialty Espresso Blend</h2>
+                    </div><!-- text -->
+
+                    <ul class="item_wrap">
+                        <li>
+                            <img src="img/section02_01.png" alt="">
+                            <div class="intext">
+                                <h3>브라질 </h3>
+                                <div class="graph">
+                                    <ul>
+                                        <li>
+                                            <p>향미</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>바디</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>산미</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>고소함</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <img src="img/bean01.png" alt="" class="image_graph">
+                                </div><!-- graph -->
+                            </div><!-- intext -->
+                        </li>
+                        <li>
+                            <img src="img/section02_02.png" alt="">
+                            <div class="intext">
+                                <h3>에티오피아 </h3>
+                                <div class="graph">
+                                    <ul>
+                                        <li>
+                                            <p>향미</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>바디</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>산미</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>고소함</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <img src="img/bean02.png" alt="" class="image_graph">
+                                </div><!-- graph -->
+                            </div><!-- intext -->
+                        </li>
+                        <li>
+                            <img src="img/section02_03.png" alt="">
+                            <div class="intext">
+                                <h3>과테말라 스페셜티</h3>
+                                <div class="graph">
+                                    <ul>
+                                        <li>
+                                            <p>향미</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>바디</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>산미</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>고소함</p>
+                                            <div class="drop">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                                <img src="img/drop.png" alt="">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <img src="img/bean03.png" alt="" class="image_graph">
+                                </div><!-- graph -->
+                            </div><!-- intext -->
+                        </li>
+                    </ul><!-- sec03_wrap -->
+                </div><!-- inner -->
+            </section><!-- section02 -->
+
+            <section class="section section03">
+                <div class="inner">
+                    <div class="text">
+                        <h2>cafe bene’s menu</h2>
+                        <p>대한민국 대표 토종 커피브랜드 카페베네</p>
+                    </div><!-- text -->
+
+                    <ul class="item_wrap">
+                        <li>
+                            <div class="image">
+                                <img src="img/sec03_01.jpg" alt="">
+                            </div><!-- image -->
+                            <p>coffee</p>
+                        </li>
+                        <li>
+                            <div class="image">
+                                <img src="img/sec03_02.jpg" alt="">
+                            </div><!-- image -->
+                            <p>drink</p>
+                        </li>
+                        <li>
+                            <div class="image">
+                                <img src="img/sec03_03.png" alt="">
+                            </div><!-- image -->
+                            <p>food</p>
+                        </li>
+                        <li>
+                            <div class="image">
+                                <img src="img/sec03_04.jpg" alt="">
+                            </div><!-- image -->
+                            <p>md product</p>
+                        </li>
+                        <li>
+                            <div class="image">
+                                <img src="img/sec03_05.jpg" alt="">
+                            </div><!-- image -->
+                            <p>retail</p>
+                        </li>
+                    </ul>
+                </div><!-- inner -->
+            </section><!-- section03 -->
+
+            <section class="section section04">
+                <div class="inner">
+                    <div class="head_menu">
+                        <div class="text">
+                            <h2>best menu</h2>
+                        </div><!-- text -->
+
+                        <div class="menu_tabs">
+                            <button class="active" data-target="coffee" type="button">Coffee</button>
+                            <button data-target="drink" type="button">Drink</button>
+                            <button data-target="food" type="button">Food</button>
+                            <button data-target="md" type="button">MD Product</button>
+                            <button data-target="retail" type="button">Retail</button>
+                        </div><!-- menu_tabs -->
+                    </div><!-- head_menu -->
+
+
+                    <!-- Swiper -->
+                    <div class="swiper menu_swiper">
+
+                        <div class="menu_slider coffee active">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_1-1.png" alt="">
+                                        <p>아메리카노(ICED)</p>
+                                        <span>카페베네 스페셜티 블렌드로 추출한
+                                            에스프레소를 부드럽게 즐길 수 있는 커피</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_1-2.png" alt="">
+                                        <p>카페 라떼(HOT)</p>
+                                        <span>
+                                            에스프레소와 부드러운 우유의 조화가 매력적인 커피</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_1-3.png" alt="">
+                                        <p>콜드브루 바닐라 젤라또 라떼</p>
+                                        <span>카페베네 시그니처 콜드브루와 바닐라 향이 가득한 부드러운 우유,
+                                            바닐라 젤라또를 함께 즐길 수 있는 커피</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_1-4.png" alt="">
+                                        <p>콜드브루 라떼</p>
+                                        <span>카페베네 시그니처 콜드브루와 부드러운 우유의 조화가 매력적인 커피</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_1-5.png" alt="">
+                                        <p>베네캣 달고나 라떼(ICED)</p>
+                                        <span>에스프레소에 부드러운 우유와 달콤하고 바삭한 식감의 달고나,
+                                            베네캣 달고나를 함께 즐길 수 있는 커피</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_1-6.png" alt="">
+                                        <p>카페 모카(HOT)</p>
+                                        <span>
+                                            에스프레소에 부드러운 우유와 진한 초콜릿 풍미가 어우러진 커피</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_1-7.png" alt="">
+                                        <p>디카페인 카라멜 마끼아또</p>
+                                        <span>
+                                            카페베네 디카페인 콜드브루를 부드러운 우유에 점을 찍듯이 부은 후
+                                            달콤한 카라멜 소스를 드리즐한 커피</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_1-8.png" alt="">
+                                        <p>디카페인 콜드브루</p>
+                                        <span>
+                                            에티오피아 내추럴 원두를 싱글 오리진으로 사용하여 달콤한 머스캣과
+                                            군고구마의 풍미가 특징인 콜드브루 디카페인 커피</span>
+                                    </div><!-- swiper-slide -->
+                                </div><!-- swiper-wrapper -->
+                            </div><!-- swiper -->
+                        </div><!-- coffee -->
+
+                        <div class="menu_slider drink">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_2-1.png" alt="">
+                                        <p>캐모마일 티</p>
+                                        <span>
+                                            긴장 완화와 불면증 개선에 좋으며,
+                                            향긋하게 퍼지는 캐모마일 향과
+                                            입안 가득 느껴지는 달콤함이 특징인 허브 차</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_2-2.png" alt="">
+                                        <p>유자 히비스커스 티(ICED)</p>
+                                        <span>
+                                            상큼한 유자와 히비스커스 블렌드 티가 만나
+                                            상큼 달콤하게 즐길 수 있는 티 블렌딩 음료</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_2-3.png" alt="">
+                                        <p>생딸기 라떼</p>
+                                        <span>생딸기를 듬뿍 올려 부드러운 우유와 함께
+                                            제철 생딸기의 상큼함을 즐길 수 있는 라떼</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_2-4.png" alt="">
+                                        <p>초콜릿 라떼(ICED)</p>
+                                        <span>달콤쌉싸름한 초콜릿의 진한 풍미를 부드러운 우유와 함께 즐길 수 있는 음료</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_2-5.png" alt="">
+                                        <p>복숭아 아이스 티</p>
+                                        <span>
+                                            진한 홍차 풍미와 달콤한 복숭아 향이 어우러진 시원한 음료</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_2-6.png" alt="">
+                                        <p>초콜릿쿠키 젤라또 프라페노</p>
+                                        <span>
+
+                                            초콜릿 젤라또와 바삭한 쿠키를 더해 초콜릿 맛을 더욱 진하고
+                                            시원하게 즐길 수 있는 블렌디드 음료</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_2-7.png" alt="">
+                                        <p>밀크티 버블 라떼</p>
+                                        <span>
+                                            깊은 홍차 향과 부드러운 우유,
+                                            쫄깃한 타피오카 펄을 함께 즐길 수 있는 음료
+                                        </span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_2-8.png" alt="">
+                                        <p>크림 루이보스 밀크티 라떼</p>
+                                        <span>
+                                            은은한 단맛의 루이보스에 달콤하고 고소한
+                                            카라멜 넛츠향이 어우러진 크림 밀크티 라떼</span>
+                                    </div><!-- swiper-slide -->
+                                </div><!-- swiper-wrapper -->
+                            </div><!-- swiper -->
+                        </div><!-- drink -->
+
+                        <div class="menu_slider food">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_3-1.png" alt="">
+                                        <p>티라미수 케이크</p>
+                                        <span>
+
+                                            에스프레소에 적신 사보이 아르디 위에
+                                            마스카포네 치즈 크림이 듬뿍 올라간 티라미수</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_3-2.png" alt="">
+                                        <p>크로크무슈</p>
+                                        <span>
+
+                                            햄과 2종류의 치즈(체다&모짜렐라), 양파, 갈릭 시즈닝이 함유된 샌드위치</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_3-3.png" alt="">
+                                        <p>애플망고 빙수</p>
+                                        <span>새콤달콤한 애플망고와 부드러운 필라델피아 치즈케익큐브,
+                                            애플망고젤라또가 조화로운 상큼한 젤라또 빙수</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_3-4.png" alt="">
+                                        <p>딸기 눈꽃빙수</p>
+                                        <span>
+                                            부드러운 우유 얼음에 상큼한 국내산 딸기와
+                                            진한 필라델피아 치즈케익큐브,
+                                            딸기젤라또가 조화로운 새콤달콤한 젤라또 빙수</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_3-5.png" alt="">
+                                        <p>초코악마 빙수</p>
+                                        <span>
+                                            진한 초코악마베이스에 바삭한 첵스초코, 초코브라우니,
+                                            다크초콜릿젤라또가 어우러져 진한 초콜릿의 풍미를 즐길 수 있는 젤라또 빙수</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_3-6.png" alt="">
+                                        <p>잠봉뵈르</p>
+                                        <span>
+                                            바삭한 바게트에 육결과 풍미가 좋은 잠봉과
+                                            부드러운 무염 버터가 조화로운 담백 고소한 잠봉뵈르</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_3-7.png" alt="">
+                                        <p>콜드브루 아포가토</p>
+                                        <span>
+                                            카페베네 디카페인 콜드브루와
+                                            쫀득하고 달콤한 카페베네 젤라또가
+                                            진하게 어우러진 아포가토
+                                        </span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_3-8.png" alt="">
+                                        <p>소금빵</p>
+                                        <span>
+                                            버터의 고소한 풍미와 소금의 짭조름함이 더해진 소금빵</span>
+                                    </div><!-- swiper-slide -->
+                                </div><!-- swiper-wrapper -->
+                            </div><!-- swiper -->
+                        </div><!-- drink -->
+
+                        <div class="menu_slider md">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_4-1.png" alt="">
+                                        <p>위드베네캣머그 R</p>
+                                        <span>420ml /520ml</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_4-2.png" alt="">
+                                        <p>굳세나 유리컵 세트</p>
+                                        <span> 330ml</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_4-3.png" alt="">
+                                        <p>베네캣 장우산</p>
+                                        <span> 폴리에스테르 100%</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_4-4.png" alt="">
+                                        <p>베네 드립백 디카페인 선물세트</p>
+                                        <span> 베네캣 스텐머그 민트 (300ml)
+                                            베네 드립백 디카페인 10g x 8개입</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_4-5.png" alt="">
+                                        <p>베네 홀리데이 키트</p>
+                                        <span> 베네캣 오로라잔 : 400ml
+                                            베네캣 코스터 : 122mm*119mm / 두께 5mm
+                                            유리 머들러 : 높이 200mm / 지름 5mm</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_4-6.png" alt="">
+                                        <p>베네 드립백 블루밍 선물세트</p>
+                                        <span> 굳세나 x 모슈 스텐 텀블러 (350ml)
+                                            베네 드립백 블루밍 블렌드 10g x 8개입</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_4-7.png" alt="">
+                                        <p>베네캣 드라이브 텀블러</p>
+                                        <span>650ml</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_4-8.png" alt="">
+                                        <p>우리산책갈까</p>
+                                        <span> 베네캣산책텀블러_ 473ml (89x146mm) /
+                                            베네펫댕블러_ 350ml (75x208mm )</span>
+                                    </div><!-- swiper-slide -->
+                                </div><!-- swiper-wrapper -->
+                            </div><!-- swiper -->
+                        </div><!-- drink -->
+
+                        <div class="menu_slider retail">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_5-1.png" alt="">
+                                        <p>블루레몬 에이드</p>
+                                        <span>190ml*10팩</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_5-2.png" alt="">
+                                        <p>콜드브루 블렌드세트</p>
+                                        <span>콜드브루 블렌드 375ml 2병</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_5-3.png" alt="">
+                                        <p>마노 홈카페 커피세트</p>
+                                        <span>마노 오리지널 아메리카노 100 g (1 gx10ea)
+                                            마노 마일드 아메리카노 100 g (1 gx10ea)
+                                            컬러유리 워터보틀 1개
+                                        </span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_5-4.png" alt="">
+                                        <p>상큼과일청 세트</p>
+                                        <span>제주청귤차 480g
+                                            자몽차 480g
+                                            레몬차 480g
+                                        </span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_5-5.png" alt="">
+                                        <p>마노선물세트 1호</p>
+                                        <span>마노 라틴 아메리카 마일드 27g[(0.9gx30T) 4개
+                                            마노 아프리카 마일드 27g[(0.9gx30T) 4개
+                                            유리보틀 1개</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_5-6.png" alt="">
+                                        <p>로열블렌드</p>
+                                        <span> 900g</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_5-7.png" alt="">
+                                        <p>핸드드립 아프리카</p>
+                                        <span>마노 아프리카 마일드 100T 0.9g*100개입</span>
+                                    </div><!-- swiper-slide -->
+                                    <div class="swiper-slide">
+                                        <img src="img/sec04_5-8.png" alt="">
+                                        <p>콜드브루 블렌드</p>
+                                        <span> 375ml</span>
+                                    </div><!-- swiper-slide -->
+                                </div><!-- swiper-wrapper -->
+                            </div><!-- swiper -->
+                        </div><!-- drink -->
+                    </div><!-- menu_swiper -->
+
+                </div><!-- inner -->
+                <div class="menu_bg"></div>
+            </section><!-- section04 -->
+
+            <section class="section section05">
+                <div class="inner">
+                    <div class="text">
+                        <h2>bene news</h2>
+                    </div><!-- text -->
+                    <div class="item_wrap">
+                        <div class="left">
+                            <img src="img/sec05_01.png" alt="">
+                        </div><!-- left -->
+
+                        <div class="right">
+                            <div class="image item02">
+                                <img src="img/sec05_02.jpg" alt="">
+                            </div>
+                            <div class="image">
+                                <img src="img/sec05_03.png" alt="">
+                            </div>
+                            <div class="image">
+                                <img src="img/sec05_04.png" alt="">
+                            </div>
+                        </div><!-- right -->
+                    </div><!-- item_wrap -->
+                </div><!-- inner -->
+            </section><!-- section05 -->
+
+            <section class="section section06">
+                <div class="inner">
+                    <div class="left">
+                        <div class="text">
+                            <p>내주변의 카페베네</p>
+                            <h2>매장 찾기</h2>
+                        </div><!-- text -->
+
+                        <div class="inleft">
+                            <div class="dropdown_wrap">
+                                <div class="dropdown_box">
+                                    <select id="region">
+                                        <option value="">지역을 선택해주세요</option>
+                                        <option value="seoul">서울</option>
+                                        <option value="busan">부산</option>
+                                        <option value="daegu">대구</option>
+                                        <option value="incheon">인천</option>
+                                        <option value="gwangju">광주</option>
+                                    </select>
+                                </div><!-- dropdown_box -->
+
+                                <div class="dropdown_box">
+                                    <select id="subregion">
+                                        <option value="">시/군/구를 선택해주세요</option>
+                                    </select>
+                                </div><!-- dropdown_box -->
+                            </div><!-- dropdown_wrap -->
+
+                            <div class="store_wrap">
+                                <div class="store">
+                                    <p>카페베네수진역점</p>
+                                    <button type="button"><img src="img/search.png" alt=""></button>
+                                </div><!-- store -->
+                                <div class="store">
+                                    <p>카페베네 서울랜드점</p>
+                                    <button type="button"><img src="img/search.png" alt=""></button>
+                                </div><!-- store -->
+                                <div class="store">
+                                    <p>카페베네동인천역점</p>
+                                    <button type="button"><img src="img/search.png" alt=""></button>
+                                </div><!-- store -->
+                                <div class="store">
+                                    <p>카페베네 미아사거리역점</p>
+                                    <button type="button"><img src="img/search.png" alt=""></button>
+                                </div><!-- store -->
+                            </div><!-- store_wrap -->
+                        </div><!-- inleft -->
+                    </div><!-- left -->
+                    <div class="right">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.9860179238303!2d127.13934934087162!3d37.43743507218864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca896aaaeb295%3A0xd40937bdc822e609!2z7Lm07Y6Y67Kg64Sk7IiY7KeE7Jet7KCQ!5e0!3m2!1sko!2skr!4v1747365872041!5m2!1sko!2skr"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div><!-- right -->
+                </div><!-- inner -->
+            </section><!-- section06 -->
+        </main>
+
+        <footer class="footer">
+            <div class="inner">
+                <div class="text_l">
+                    <div class="up">
+                        <h1><img src="img/logo_white.png" alt=""></h1>
+                        <p>경기도 파주시 월롱면 홀작로 129, 5동<br>
+                            대표이사박그레타</p>
+                        <p>사업자등록번호206-86-29161 <br>
+                            benecs@caffebene.co.kr</p>
+                    </div><!-- up -->
+                    <div class="down">
+                        <ul>
+                            <li><a href="#">오시는길</a></li>
+                            <li><a href="#">제휴문의</a></li>
+                            <li><a href="#">개인정보 처리방침</a></li>
+                            <li><a href="#">이용약관</a></li>
+                        </ul>
+                    </div><!-- down -->
+                </div><!-- text_l -->
+                <div class="text_R">
+                    <div class="call">
+                        <p>카페베네 고객센터</p>
+                        <h2>1688-4666</h2>
+                    </div>
+
+                    <ul>
+                        <li><a href="#"><img src="img/ico-blog.png" alt=""></a></li>
+                        <li><a href="#"><img src="img/ico-fb.png" alt=""></a></li>
+                        <li><a href="#"><img src="img/ico-insta.png" alt=""></a></li>
+                        <li><a href="#"><img src="img/ico-youtub.png" alt=""></a></li>
+                        <li><a href="#"><img src="img/ico-app.png" alt=""></a></li>
+                    </ul>
+                </div>
+            </div><!-- inner -->
+        </footer>
+
+    </div><!-- wrap -->
+</body>
+
+</html>
